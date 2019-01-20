@@ -12,10 +12,9 @@ public abstract class Colony {
     boolean waspAttack = false;
     int queenDistance;
     boolean matingMood;
-    private int numberOfAnts;
-    List<Worker> workers = new ArrayList<Worker>();
-    List<Soldier> soldiers = new ArrayList<Soldier>();
-    List<Drone> drones = new ArrayList<Drone>();
+    private static int numberOfAnts = 0;
+
+
 
     public abstract void step();
 

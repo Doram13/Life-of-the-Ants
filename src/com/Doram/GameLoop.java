@@ -1,24 +1,26 @@
 package com.Doram;
 
+import static com.Doram.Drone.drones;
+import static com.Doram.Soldier.soldiers;
+import static com.Doram.Worker.workers;
+
 public class GameLoop extends Colony {
     private int turn;
 
 
 
     GameLoop() {
-        turn = 0;
-        if (turn == 0) {
-            for (int i = 0; i <= 25; i++) {
+        this.turn = 0;
+        if (this.turn == 0) {
+            for (int i = 0; i <= 1; i++) {
                 Worker worker = new Worker();
-                workers.add(worker);
             }
-            for (int j = 0; j <= 10; j++) {
+            for (int j = 0; j <= 1; j++) {
                 Soldier soldier = new Soldier();
-                soldiers.add(soldier);
+
             }
-            for (int k = 0; k <= 10; k++) {
+            for (int k = 0; k <= 15; k++) {
                 Drone drone = new Drone();
-                drones.add(drone);
             }
         }
         Queen queen = new Queen();
@@ -28,7 +30,7 @@ public class GameLoop extends Colony {
     public void startLoop(Queen queen) {
     do {
         queen.step();
-        for (Worker worker: workers ) {
+        for (Worker worker: workers) {
             worker.step();
         }
         for (Soldier soldier: soldiers) {
@@ -37,8 +39,8 @@ public class GameLoop extends Colony {
         for (Drone drone: drones) {
             drone.step();
         }
-        turn++;
-    } while (turn <= 300);
+        this.turn++;
+    } while (this.turn <= 300);
     }
 
 

@@ -1,5 +1,8 @@
 package com.Doram;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Drone extends Colony {
     private int id;
     private int[] position;
@@ -7,62 +10,64 @@ public class Drone extends Colony {
     private int[] distanceFromQueen = new int[2];
     private int stepCounter;
     private int mateCounter;
+    static List<Drone> drones = new ArrayList<Drone>();
 
     public Drone() {
-        id = createId();
-        position = randomPosition();
-        stepCounter = 0;
-        mateCounter = 0;
+        this.id = createId();
+        this.position = randomPosition();
+        this.stepCounter = 0;
+        this.mateCounter = 0;
+        drones.add(this);
     }
 
     @Override
     public void step() {
-        distanceFromQueen = queenDistance(position);
-        stepsFromQueen = distanceFromQueen[0] + distanceFromQueen[1];
+        this.distanceFromQueen = queenDistance(position);
+        this.stepsFromQueen = distanceFromQueen[0] + distanceFromQueen[1];
         if (stepsFromQueen > 3) {
-            moveToQueen();
+            this.moveToQueen();
         }
         if (stepsFromQueen <= 3) {
             if (matingMood) {
-                mate();
+                this.mate();
             }
             if (mateCounter > 0 && mateCounter < 10) {
-                mate();
+                this.mate();
             }
             else {
-                kickedOut();
+                this.kickedOut();
             }
         }
     }
 
     private void mate() {
         System.out.println("HALLELUJAH");
-        mateCounter++;
+        this.mateCounter++;
     }
 
     private void kickedOut() {
-        position[0] += 50;
-        position[1] += 50;
+        this.position[0] += 50;
+        this.position[1] += 50;
         System.out.println("D'OH");
-        mateCounter = 0;
+        this.mateCounter = 0;
     }
 
 
 
     private void moveToQueen() {
-        switch (stepCounter%2) {
+        switch (this.stepCounter%2) {
             case 0:
-                if (position[0] < 0) {
-                    position[0]++;}
-                if (position[0] > 0) {
-                    position[0]--;
+                if (this.position[0] < 0) {
+                    this.position[0]++;}
+                if (this.position[0] > 0) {
+                    this.position[0]--;
                     }
             case 1:
-                if(position[1] < 0) {
-                    position[1]++;
+                if(this.position[1] < 0) {
+                    this.position[1]++;
                 }
-                if (position[1] > 0) {
-                    position[1]--;
+                if (this.position[1] > 0) {
+                    this.position[1]--;
                 }
         }
     }

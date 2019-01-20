@@ -4,11 +4,12 @@ import java.util.Random;
 
 public class Soldier extends Colony{
     private int patrolCounter;
+    int id;
 
     public void Soldier() {
-        position[0] = xPos;
-        position[1] = yPos;
+        position = randomPosition();
         patrolCounter = 0;
+        this.id = createId();
     }
 
     @Override

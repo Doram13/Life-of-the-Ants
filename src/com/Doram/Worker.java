@@ -4,9 +4,13 @@ import java.util.Random;
 
 public class Worker extends Colony {
 
+    private int id;
+
     public Worker() {
         position = randomPosition();
-    }
+        this.id = createId();
+
+        }
 
     @Override
      public void step() {
@@ -26,5 +30,6 @@ public class Worker extends Colony {
                 position[1] += -1;
                 break;
         }
+
     }
 }

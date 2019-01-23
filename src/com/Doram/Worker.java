@@ -33,6 +33,7 @@ public class Worker extends Colony {
                 this.position[1] += -1;
                 break;
         }
+       // System.out.println("I'm Worker " + this.id + " I'm at " + this.position[0] + "-" + this.position[1] + " position");
 
     }
 }

@@ -28,21 +28,26 @@ public class Drone extends Colony {
             this.moveToQueen();
         }
         if (stepsFromQueen <= 3) {
-            if (matingMood) {
+            if (Colony.isMatingMood() && mateCounter == 0) {
                 this.mate();
+
             }
             if (mateCounter > 0 && mateCounter < 10) {
-                this.mate();
+                this.mateContinue();
             }
             else {
                 this.kickedOut();
             }
         }
     }
+    private void mateContinue() {
+        this.mateCounter++;
+    }
 
     private void mate() {
         System.out.println("HALLELUJAH");
         this.mateCounter++;
+        Colony.matingMood = false;
     }
 
     private void kickedOut() {
@@ -62,6 +67,7 @@ public class Drone extends Colony {
                 if (this.position[0] > 0) {
                     this.position[0]--;
                     }
+                break;
             case 1:
                 if(this.position[1] < 0) {
                     this.position[1]++;
@@ -69,7 +75,10 @@ public class Drone extends Colony {
                 if (this.position[1] > 0) {
                     this.position[1]--;
                 }
+                break;
+            default: break;
         }
+        stepCounter++;
     }
 }
 

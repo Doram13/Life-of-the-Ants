@@ -11,9 +11,8 @@ public abstract class Colony {
     int[] position = new int[2];
     boolean waspAttack = false;
     int queenDistance;
-    boolean matingMood;
+    static boolean matingMood = false;
     private static int numberOfAnts = 0;
-
 
 
     public abstract void step();
@@ -40,7 +39,7 @@ public abstract class Colony {
     }
 
 
-    public boolean isMatingMood() {
+    public static boolean isMatingMood() {
         return matingMood;
     }
 
@@ -48,13 +47,7 @@ public abstract class Colony {
         return waspAttack;
     }
 
-    public void setMatingMood(boolean matingMood) {
-        this.matingMood = matingMood;
-    }
 
-    public void setWaspAttack(boolean waspAttack) {
-        this.waspAttack = waspAttack;
-    }
 
 
 

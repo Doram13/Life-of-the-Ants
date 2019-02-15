@@ -3,43 +3,46 @@ package com.Doram;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Drone extends Colony {
+public class Drone extends Ant {
     private int id;
     private int[] position;
     private int stepsFromQueen;
     private int[] distanceFromQueen = new int[2];
     private int stepCounter;
     private int mateCounter;
-    static List<Drone> drones = new ArrayList<Drone>();
+    private Queen queen;
 
     public Drone() {
-        this.id = createId();
-        this.position = randomPosition();
-        this.stepCounter = 0;
-        this.mateCounter = 0;
-        drones.add(this);
+        id = createId();
+        position = randomPosition();
+        stepCounter = 0;
+        mateCounter = 0;
+    }
+
+    public void setQueen(Queen queen) {
+        this.queen = queen;
     }
 
     @Override
     public void step() {
-        this.distanceFromQueen = queenDistance(position);
-        this.stepsFromQueen = distanceFromQueen[0] + distanceFromQueen[1];
-        if (stepsFromQueen > 3) {
-            this.moveToQueen();
-        }
-        if (stepsFromQueen <= 3) {
-            if (Colony.isMatingMood() && mateCounter == 0) {
-                this.mate();
-
+        distanceFromQueen = queenDistance(position);
+            stepsFromQueen = distanceFromQueen[0] + distanceFromQueen[1];
+            if (stepsFromQueen > 3) {
+                this.moveToQueen();
             }
-            if (mateCounter > 0 && mateCounter < 10) {
-                this.mateContinue();
-            }
-            else {
-                this.kickedOut();
-            }
+            if (stepsFromQueen <= 3) {
+                if (queen.getMatingMood() && mateCounter == 0) {
+                    this.mate();
+                }
+                if (mateCounter > 0 && mateCounter < 10) {
+                    this.mateContinue();
+                }
+                else {
+            this.kickedOut();
         }
     }
+    }
+
     private void mateContinue() {
         this.mateCounter++;
     }
@@ -47,15 +50,18 @@ public class Drone extends Colony {
     private void mate() {
         System.out.println("HALLELUJAH");
         this.mateCounter++;
-        Colony.matingMood = false;
+        this.queen.mate();
     }
 
     private void kickedOut() {
         this.position[0] += 50;
         this.position[1] += 50;
-        System.out.println("D'OH");
+        if (mateCounter == 0) {
+            System.out.println("D'OH");}
         this.mateCounter = 0;
     }
+
+
 
 
 

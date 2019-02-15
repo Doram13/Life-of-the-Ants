@@ -6,12 +6,10 @@ import java.util.Random;
 import java.lang.Math;
 
 
-public abstract class Colony {
+public abstract class Ant {
 
     int[] position = new int[2];
-    boolean waspAttack = false;
-    int queenDistance;
-    static boolean matingMood = false;
+    //static boolean matingMood = false;
     private static int numberOfAnts = 0;
 
 
@@ -23,6 +21,8 @@ public abstract class Colony {
     }
 
 
+
+
     protected int[] randomPosition() {
 
         Random rand = new Random();
@@ -31,24 +31,10 @@ public abstract class Colony {
         return position;
     }
 
-    public int[] queenDistance(int[] distanceFrom) {
+    protected int[] queenDistance(int[] distanceFrom) {
         int[] distanceFromQueen = new int[2];
         distanceFromQueen[0] = Math.abs(0 - distanceFrom[0]);
         distanceFromQueen[1] = Math.abs(0 - distanceFrom[1]);
         return distanceFromQueen;
     }
-
-
-    public static boolean isMatingMood() {
-        return matingMood;
-    }
-
-    public boolean isWaspAttack() {
-        return waspAttack;
-    }
-
-
-
-
-
 }

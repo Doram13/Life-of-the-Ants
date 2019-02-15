@@ -1,15 +1,12 @@
 package com.Doram;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
-	    innitColony();
+	    initColony();
     }
 
-    private static void innitColony() {
-        GameLoop gameLoop = new GameLoop();
+    private static void initColony() {
+        Anthill anthill = new Anthill();
     }
 }

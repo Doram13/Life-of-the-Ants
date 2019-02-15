@@ -1,33 +1,38 @@
 package com.Doram;
 
-import static com.Doram.Drone.drones;
-import static com.Doram.Soldier.soldiers;
-import static com.Doram.Worker.workers;
+import java.util.ArrayList;
+import java.util.List;
 
-public class GameLoop extends Colony {
+
+public class Anthill {
     private int turn;
+     private List<Worker> workers = new ArrayList<Worker>();
+     private List<Drone> drones = new ArrayList<Drone>();
+     private List<Soldier> soldiers = new ArrayList<Soldier>();
+     protected Queen queen;
 
-
-
-    GameLoop() {
+    Anthill() {
         this.turn = 0;
+        this.queen = new Queen();
         if (this.turn == 0) {
             for (int i = 0; i <= 1; i++) {
                 Worker worker = new Worker();
+                workers.add(worker);
             }
             for (int j = 0; j <= 1; j++) {
                 Soldier soldier = new Soldier();
-
+                soldiers.add(soldier);
             }
-            for (int k = 0; k <= 10; k++) {
+            for (int k = 0; k <= 5; k++) {
                 Drone drone = new Drone();
+                drones.add(drone);
+                drone.setQueen(queen);
             }
         }
-        Queen queen = new Queen();
-        startLoop(queen);
+        startLoop();
     }
 
-    public void startLoop(Queen queen) {
+    public void startLoop() {
     do {
         queen.step();
         for (Worker worker: workers) {
@@ -39,13 +44,8 @@ public class GameLoop extends Colony {
         for (Drone drone: drones) {
             drone.step();
         }
-        this.turn++;
+        turn++;
     } while (this.turn <= 300);
     }
 
-
-    @Override
-    public void step() {
-
-    }
 }

@@ -2,10 +2,11 @@ package com.Doram;
 
 import java.util.Random;
 
-public class Queen extends Colony{
-    int[] queenPosition = new int[2];
+public class Queen extends Ant {
+    private int[] queenPosition = new int[2];
+    private boolean matingMood;
 
-    int lastTimeMated;
+    private int lastTimeMated;
 
     public Queen() {
         this.queenPosition[0] = 0;
@@ -16,14 +17,14 @@ public class Queen extends Colony{
         System.out.println(queenPosition[1]);
     }
 
-    public Queen getInstance() {
-        return this;
+    public int[] getQueenPosition() {
+        return queenPosition;
     }
 
     private void setMatingMood() {
         Random r = new Random();
-        if (lastTimeMated > 10 && r.nextDouble() <= 0.99) {
-            matingMood = true;
+        if (lastTimeMated > 50 && r.nextDouble() <= 0.10) {
+            this.matingMood = true;
             this.lastTimeMated = 0;
         }
     }
@@ -34,4 +35,11 @@ public class Queen extends Colony{
         this.lastTimeMated++;
     }
 
+    public boolean getMatingMood() {
+        return matingMood;
+    }
+
+    protected void mate() {
+        matingMood = false;
+    }
 }

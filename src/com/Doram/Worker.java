@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Worker extends Colony {
+public class Worker extends Ant {
 
     private int id;
-    static List<Worker> workers = new ArrayList<Worker>();
+
 
     public Worker() {
         this.position = randomPosition();
         this.id = createId();
-        workers.add(this);
+
         }
 
     @Override
@@ -33,7 +33,7 @@ public class Worker extends Colony {
                 this.position[1] += -1;
                 break;
         }
-       // System.out.println("I'm Worker " + this.id + " I'm at " + this.position[0] + "-" + this.position[1] + " position");
+      //  System.out.println("I'm Worker " + this.id + " I'm at " + this.position[0] + "-" + this.position[1] + " position");
 
     }
 }
